@@ -1,0 +1,82 @@
+repos:
+  # ----------------------------------------------------
+  # 1. Pylint (Code Quality)
+  # ----------------------------------------------------
+  - repo: https://github.com/pycqa/pylint
+    rev: v3.3.1
+    hooks:
+      - id: pylint
+        name: pylint
+        additional_dependencies:
+          - sqlalchemy
+          - fastapi
+          - sqlmodel
+          - pydantic
+          - pydantic-settings
+          - passlib
+          - sentry-sdk
+          - starlette
+          - emails
+          - jinja2
+        args:
+          - "--rcfile=.pylintrc"
+          - "--disable=C0114,C0115,C0116"
+
+  # ----------------------------------------------------
+  # 2. Black (Auto Formatter)
+  # ----------------------------------------------------
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        name: Format code with Black
+        language_version: python3
+
+  # ----------------------------------------------------
+  # 3. isort (Import Sorting)
+  # ----------------------------------------------------
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort imports with isort
+        args: ["--profile=black"]
+
+  # ----------------------------------------------------
+  # 4. Flake8 (Linting)
+  # ----------------------------------------------------
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        name: Run Flake8
+        additional_dependencies:
+          - flake8-bugbear
+          - flake8-comprehensions
+
+  # ----------------------------------------------------
+  # 5. Mypy (Type Checker)
+  # ----------------------------------------------------
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.1
+    hooks:
+      - id: mypy
+        name: Run Mypy Type Checker
+        additional_dependencies:
+          - sqlmodel
+          - fastapi
+          - pydantic
+          - sqlalchemy
+        args:
+          - "--config-file=mypy.ini"
+
+  # ----------------------------------------------------
+  # 6. Basic Utility Hooks
+  # ----------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files

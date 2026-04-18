@@ -1,0 +1,11 @@
+[build]
+  base = "frontend"
+  command = "pnpm run build"
+  publish = "build"
+
+# We already have _redirects in frontend/public/_redirects which takes care of SPA routing,
+# but we can also ensure the redirects are handled at the Netlify config level just in case:
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

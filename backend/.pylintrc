@@ -1,0 +1,18 @@
+[MASTER]
+ignore=venv,__pycache__,.mypy_cache
+
+[MESSAGES CONTROL]
+disable=E1101,E1102,E1136,W0707,W0611,
+        C0114,C0115,C0116,
+        C0303,C0301,
+        R0903,R0913,R0401,R0801
+
+[FORMAT]
+max-line-length=120
+indent-string='    '
+
+[REPORTS]
+reports=no
+
+[TYPECHECK]
+ignored-modules=jwt,sqlmodel,fastapi,pydantic,sqlalchemy.sql.functions,sqlalchemy.orm

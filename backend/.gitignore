@@ -1,0 +1,52 @@
+############################################################
+#  FastAPI / Python                                         #
+############################################################
+# Byte-compiled files
+**/__pycache__/
+*.py[cod]                # .pyc, .pyo, .pyd
+*$py.class
+*.pyc
+
+# C-extensions
+*.so
+
+# Virtual-environment directories
+.venv/
+venv/
+.env
+env/
+ENV/
+.Python                  # created by virtualenv
+
+# Dependency & build artifacts
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Testing & coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage*
+htmlcov/
+
+# Type checkers / linters
+.mypy_cache/
+.pyre/
+.dmypy.json
+
+# Logs & runtime files
+*.log
+*.pid
+*.sqlite3                # local SQLite DBs often used during development
+
+# Environment / secrets
+.env*                    # .env, .env.local, .env.prod, etc.[44]
+*.pem                    # TLS keys or certs
+
+############################################################
+#  Tooling                                                  #
+############################################################
+# IDEs / editors
+.idea/                   # PyCharm & other
