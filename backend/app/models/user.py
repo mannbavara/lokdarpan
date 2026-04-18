@@ -1,8 +1,9 @@
 import uuid
 
 from pydantic import EmailStr
-from sqlalchemy import Text, text
+from sqlalchemy import Column, ForeignKey, Text, text
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlmodel import Field, Relationship, SQLModel
 
 from .base import TimestampMixin
@@ -54,12 +55,19 @@ class RefreshToken(SQLModel, table=True):
     id: uuid.UUID = Field(
         default_factory=uuid.uuid4, primary_key=True, sa_column_kwargs={"server_default": text("gen_random_uuid()")}
     )
-    user_id: uuid.UUID = Field(foreign_key="users.id", index=True, ondelete="CASCADE")
+    # ondelete must be on ForeignKey, not on Field/Column directly
+    user_id: uuid.UUID = Field(
+        sa_column=Column(
+            PGUUID(as_uuid=True),
+            ForeignKey("users.id", ondelete="CASCADE"),
+            index=True,
+            nullable=False,
+        )
+    )
     token_hash: str = Field(max_length=128, unique=True, nullable=False)
-    expires_at: str = Field(
-        nullable=False
-    )  # User specified String for datetime? Or just simple string. Keeping as string per request.
+    expires_at: str = Field(nullable=False)
     revoked: bool = Field(default=False)
+
 
 
 # Schemas

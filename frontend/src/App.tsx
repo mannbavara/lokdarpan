@@ -10,6 +10,8 @@ import {
 import initialTheme from './theme/theme'; //  { themeGreen }
 import { useState } from 'react';
 import CivicDashboard from './views/admin/civic-dashboard';
+import LandingBackup from './views/admin/civic-dashboard/LandingBackup';
+import ResultsPage from './views/admin/civic-dashboard/ResultsPage';
 
 export default function Main() {
   const [currentTheme, setCurrentTheme] = useState(initialTheme);
@@ -25,14 +27,10 @@ export default function Main() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/dashboard"
-          element={<CivicDashboard />}
-        />
-        <Route
-          path="/"
-          element={<CivicDashboard />}
-        />
+        <Route path="/dashboard" element={<CivicDashboard />} />
+        <Route path="/" element={<CivicDashboard />} />
+        <Route path="/landing-backup" element={<LandingBackup />} />
+        <Route path="/results" element={<ResultsPage />} />
       </Routes>
     </ChakraProvider>
   );
