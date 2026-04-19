@@ -157,41 +157,49 @@ export default function ResultsPage() {
           inset={0}
           zIndex={999}
           display="flex"
-          alignItems="center"
+          alignItems={{ base: 'flex-end', md: 'center' }}
           justifyContent="center"
-          px={4}
           style={{ background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(8px)' }}
         >
           <Box
             bg={T.card}
             border="1px solid"
             borderColor={T.border}
-            borderRadius="2xl"
-            maxW="540px"
+            borderRadius={{ base: '2xl 2xl 0 0', md: '2xl' }}
+            maxW={{ base: '100%', md: '540px' }}
             w="100%"
+            maxH={{ base: '90vh', md: '85vh' }}
+            display="flex"
+            flexDirection="column"
             overflow="hidden"
             style={{ boxShadow: '0 0 60px rgba(228,0,0,0.15)' }}
           >
             {/* Header */}
-            <Box bg={T.red} px={6} py={4}>
+            <Box bg={T.red} px={{ base: 4, md: 6 }} py={{ base: 3, md: 4 }} flexShrink={0}>
               <Text fontSize="10px" color="rgba(255,255,255,0.7)" textTransform="uppercase"
                 letterSpacing="widest" mb={1}>Important Notice</Text>
-              <Heading fontFamily="'Merriweather', serif" fontSize="lg" color={T.white} fontWeight="black">
+              <Heading fontFamily="'Merriweather', serif"
+                fontSize={{ base: 'md', md: 'lg' }} color={T.white} fontWeight="black">
                 Legal Disclaimer
               </Heading>
             </Box>
 
-            {/* Body */}
-            <Box px={6} py={6}>
+            {/* Scrollable Body */}
+            <Box
+              px={{ base: 4, md: 6 }}
+              py={{ base: 4, md: 6 }}
+              overflowY="auto"
+              flex={1}
+            >
               <VStack spacing={4} align="stretch">
-                <Text fontSize="sm" color={T.offWhite} lineHeight="1.7">
+                <Text fontSize={{ base: 'xs', md: 'sm' }} color={T.offWhite} lineHeight="1.7">
                   The election-related information, analysis, projections, and any results displayed
                   on this platform are compiled solely on the basis of independent public research,
                   publicly available data, and community-sourced inputs. They do not represent
                   official results published by the Election Commission of India or any government
                   authority.
                 </Text>
-                <Text fontSize="sm" color={T.offWhite} lineHeight="1.7">
+                <Text fontSize={{ base: 'xs', md: 'sm' }} color={T.offWhite} lineHeight="1.7">
                   This platform, its operators, contributors, and affiliates expressly disclaim all
                   liability — whether direct, indirect, incidental, or consequential — arising from
                   your reliance on the content herein. The information is provided on an
@@ -199,7 +207,7 @@ export default function ResultsPage() {
                   basis, without warranties of any kind, express or implied, including but not
                   limited to accuracy, completeness, or fitness for a particular purpose.
                 </Text>
-                <Text fontSize="sm" color={T.offWhite} lineHeight="1.7">
+                <Text fontSize={{ base: 'xs', md: 'sm' }} color={T.offWhite} lineHeight="1.7">
                   Any decisions — political, financial, legal, or personal — made on the basis of
                   content on this page are solely at your own risk. Nothing on this platform
                   constitutes legal, electoral, or professional advice of any kind.
@@ -223,9 +231,9 @@ export default function ResultsPage() {
               {/* Okay button */}
               <Box
                 as="button"
-                mt={6}
+                mt={5}
                 w="100%"
-                py={3}
+                py={{ base: 4, md: 3 }}
                 bg={T.red}
                 color={T.white}
                 fontWeight="black"
@@ -240,6 +248,9 @@ export default function ResultsPage() {
               >
                 Okay, I Understand
               </Box>
+
+              {/* Safe-area bottom padding for iOS devices */}
+              <Box h={{ base: 'env(safe-area-inset-bottom, 16px)', md: '0' }} />
             </Box>
           </Box>
         </Box>
