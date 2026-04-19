@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { pickRandom } from '../../../assets/messages';
 import havdaBridge from '../../../assets/havdaBridge.png';
 import {
   Box,
@@ -110,6 +111,11 @@ const cardStyle = {
 export default function CivicDashboard() {
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
   const navigate = useNavigate();
+  const [modalMsg, setModalMsg] = useState<string | null>(null);
+
+  const openModal = () => setModalMsg(pickRandom());
+  const dismissModal = () => setModalMsg(pickRandom(modalMsg ?? undefined));
+  const acceptModal = () => { setModalMsg(null); navigate('/results'); };
 
   const phase1Countdown   = useCountdown(PHASE1_DATE);
   const phase2Countdown   = useCountdown(PHASE2_DATE);
@@ -169,6 +175,59 @@ export default function CivicDashboard() {
 
   return (
     <Box minH="100vh" bg={T.black} pb={16} fontFamily="'Inter', sans-serif">
+
+      {/* ── PERSUASION MODAL ── */}
+      {modalMsg && (
+        <Box
+          position="fixed" inset={0} zIndex={999}
+          display="flex" alignItems="center" justifyContent="center" px={4}
+          style={{ background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(8px)' }}
+        >
+          <Box
+            bg={T.card} border="1px solid" borderColor={T.border}
+            borderRadius="2xl" maxW="480px" w="100%" overflow="hidden"
+            style={{ boxShadow: '0 0 60px rgba(228,0,0,0.18)' }}
+          >
+            {/* Red header */}
+            <Box bg={T.red} px={6} py={4}>
+              <Heading fontFamily="'Merriweather', serif" fontSize="md" color={T.white} fontWeight="black">
+                Election Survey & Result Predictor 
+              </Heading>
+            </Box>
+            {/* Body */}
+            <Box px={6} py={6}>
+              <Text fontSize="md" color={T.offWhite} lineHeight="1.8" mb={6}
+                fontFamily="'Merriweather', serif" fontStyle="italic">
+                {modalMsg}
+              </Text>
+              <HStack spacing={3} justify="flex-end">
+                <Box
+                  as="button"
+                  px={5} py={2}
+                  border="1px solid" borderColor={T.border}
+                  borderRadius="lg" fontSize="sm" color={T.muted}
+                  fontWeight="semibold" transition="all 0.2s"
+                  _hover={{ borderColor: T.white, color: T.white }}
+                  onClick={dismissModal}
+                >
+                  No, Skip
+                </Box>
+                <Box
+                  as="button"
+                  px={5} py={2}
+                  bg={T.red} borderRadius="lg" fontSize="sm" color={T.white}
+                  fontWeight="black" letterSpacing="wide" transition="all 0.2s"
+                  _hover={{ bg: '#C20000', transform: 'translateY(-1px)' }}
+                  _active={{ transform: 'translateY(0)' }}
+                  onClick={acceptModal}
+                >
+                  Yes, Let’s Go! →
+                </Box>
+              </HStack>
+            </Box>
+          </Box>
+        </Box>
+      )}
 
       {/* ── HERO ── */}
       <Box
@@ -235,12 +294,16 @@ export default function CivicDashboard() {
             w={{ base: '100%', lg: '520px' }}
           >
             <Box gridColumn="1" gridRow="1">
-              <CountdownCard label="Phase 1 · 23 Apr 2026" accentColor={T.gold}
-                countdown={phase1Countdown} doneText="Phase 1 — 152 seats done" />
+              <Box onClick={openModal} cursor="pointer">
+                <CountdownCard label="Phase 1 · 23 Apr 2026" accentColor={T.gold}
+                  countdown={phase1Countdown} doneText="Phase 1 — 152 seats done" />
+              </Box>
             </Box>
             <Box gridColumn="1" gridRow="2">
-              <CountdownCard label="Phase 2 · 29 Apr 2026" accentColor={T.muted}
-                countdown={phase2Countdown} doneText="Phase 2 — 142 seats done" />
+              <Box onClick={openModal} cursor="pointer">
+                <CountdownCard label="Phase 2 · 29 Apr 2026" accentColor={T.muted}
+                  countdown={phase2Countdown} doneText="Phase 2 — 142 seats done" />
+              </Box>
             </Box>
 
             {/* Results — spans both rows, clickable */}
@@ -309,6 +372,8 @@ export default function CivicDashboard() {
             <Box key={i} {...cardStyle}
               borderTop="2px solid" borderTopColor={T.red}
               p={4} transition="all 0.2s"
+              cursor="pointer"
+              onClick={openModal}
               _hover={{ bg: T.cardHover, transform: 'translateY(-2px)', borderColor: T.red }}>
               <HStack color={T.red} mb={2}>
                 <Icon as={s.icon as any} w="16px" h="16px" />
