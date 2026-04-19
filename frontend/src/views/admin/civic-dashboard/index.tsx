@@ -191,7 +191,7 @@ export default function CivicDashboard() {
             {/* Red header */}
             <Box bg={T.red} px={6} py={4}>
               <Heading fontFamily="'Merriweather', serif" fontSize="md" color={T.white} fontWeight="black">
-                Election Survey & Result Predictor 
+                Before you go, Please checkout our result predictor.
               </Heading>
             </Box>
             {/* Body */}
@@ -281,9 +281,7 @@ export default function CivicDashboard() {
               </Box>
             </Heading>
 
-            <Text color={T.muted} fontSize="sm" mt={3} letterSpacing="wide">
-              294 Seats · 2 Phases · 67.5 Million Voters · Results: 4 May 2026
-            </Text>
+
           </Box>
 
           {/* Right: Countdown grid */}
@@ -392,11 +390,14 @@ export default function CivicDashboard() {
 
             {/* KEY POLITICAL ISSUES */}
             <Box {...cardStyle} p={6}>
-              <HStack mb={5}>
+              <HStack mb={5} cursor="pointer" onClick={openModal}
+                _hover={{ opacity: 0.85 }} transition="opacity 0.15s"
+                title="Click to learn more">
                 <Box w="3px" h="18px" bg={T.red} borderRadius="full" />
                 <Heading size="sm" fontFamily="'Merriweather', serif" color={T.white} letterSpacing="tight">
                   Key Political Issues — WB 2026
                 </Heading>
+                <Text fontSize="10px" color={T.red} fontWeight="bold" ml="auto">↗</Text>
               </HStack>
               <Wrap spacing={2}>
                 {politicalIssues.map((issue) => (
@@ -430,8 +431,15 @@ export default function CivicDashboard() {
               </Wrap>
               {selectedIssue && (
                 <Box mt={4} p={4} bg={T.cardHover} borderRadius="lg"
-                  borderLeft="3px solid" borderLeftColor={T.red}>
-                  <Text fontSize="sm" color={T.white} fontWeight="semibold" mb={1}>{selectedIssue}</Text>
+                  borderLeft="3px solid" borderLeftColor={T.red}
+                  cursor="pointer" onClick={openModal}
+                  transition="all 0.15s"
+                  _hover={{ bg: '#222222', borderLeftColor: '#FF2222' }}
+                >
+                  <HStack justify="space-between" mb={1}>
+                    <Text fontSize="sm" color={T.white} fontWeight="semibold">{selectedIssue}</Text>
+                    <Text fontSize="10px" color={T.red} fontWeight="bold">↗</Text>
+                  </HStack>
                   <Text fontSize="sm" color={T.muted}>
                     {politicalIssues.find(i => i.label === selectedIssue)?.desc}
                   </Text>
@@ -451,9 +459,13 @@ export default function CivicDashboard() {
 
                 {/* Phase 1 */}
                 <Box border="1px solid" borderColor={T.border} borderRadius="lg" overflow="hidden">
-                  <Box bg={T.red} px={4} py={2}>
+                  <Box bg={T.red} px={4} py={2}
+                    cursor="pointer" onClick={openModal}
+                    transition="all 0.15s"
+                    _hover={{ filter: 'brightness(1.2)' }}
+                  >
                     <Text fontWeight="bold" fontSize="sm" color={T.white} textAlign="center" letterSpacing="wide">
-                      Phase I (AC 1–76, 203–258, 275–294)
+                      Phase I (AC 1–76, 203–258, 275–294) ↗
                     </Text>
                   </Box>
                   <VStack spacing={0} align="stretch" divider={<Divider borderColor={T.border} />}>
@@ -471,9 +483,13 @@ export default function CivicDashboard() {
 
                 {/* Phase 2 */}
                 <Box border="1px solid" borderColor={T.border} borderRadius="lg" overflow="hidden">
-                  <Box bg={T.redDim} px={4} py={2}>
+                  <Box bg={T.redDim} px={4} py={2}
+                    cursor="pointer" onClick={openModal}
+                    transition="all 0.15s"
+                    _hover={{ filter: 'brightness(1.2)' }}
+                  >
                     <Text fontWeight="bold" fontSize="sm" color={T.white} textAlign="center" letterSpacing="wide">
-                      Phase II (AC 77–202, 259–274)
+                      Phase II (AC 77–202, 259–274) ↗
                     </Text>
                   </Box>
                   <VStack spacing={0} align="stretch" divider={<Divider borderColor={T.border} />}>

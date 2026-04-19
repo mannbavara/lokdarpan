@@ -19,11 +19,10 @@ export function SidebarBrand() {
 			{/* Text beside the logo */}
 			<Flex flexDirection="column">
 				<Text fontWeight="bold" fontSize="lg">
-				Lokdarpan
+				West Bengal Election 2026
 				</Text>
 
 				<Text fontSize="sm" color="gray.600">
-				Audit Management System
 				</Text>
 			</Flex>
 			</Flex>

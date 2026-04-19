@@ -122,7 +122,7 @@ export default function SignIn() {
             mb="10px"
             textAlign="center"
           >
-            Lokdarpan
+            West Bengal Election 2026
           </Heading>
           <Text
             mb="36px"

@@ -14,6 +14,12 @@ import nano from '../../../assets/nano.png';
 import atree from '../../../assets/atree.png';
 import dhoni from '../../../assets/dhoni.png';
 import jaya from '../../../assets/jaya.png';
+import ambani from '../../../assets/ambani.png';
+import adani from '../../../assets/adani.png';
+import sonam from '../../../assets/sonam.png';
+import andaman from '../../../assets/andaman.png';
+import kejri from '../../../assets/kejri.png';
+import vedanta from '../../../assets/vedanta.png';
 import OrganisingCommittee from '../../../assets/organising_committee.png';
 import attractAudio from '../../../assets/audio/landing_page_attract.mp3';
 import {
@@ -135,8 +141,14 @@ export default function ResultsPage() {
       <DVDBouncer src={doll}        alt="Doll"     />
       <DVDBouncer src={nano}        alt="Nano"     />
       <DVDBouncer src={atree}       alt="Atree" size={190}     />
-      <DVDBouncer src={dhoni}       alt="Dhoni" size={190}     />
-      <DVDBouncer src={jaya}        alt="Jaya" size={190}     />
+      <DVDBouncer src={dhoni}       alt="Dhoni"      />
+      <DVDBouncer src={jaya}        alt="Jaya"      />
+      <DVDBouncer src={ambani}      alt="Ambani" size={390}     />
+      <DVDBouncer src={adani}       alt="Adani" size={390}     />
+      <DVDBouncer src={sonam}       alt="Sonam"      />
+      
+      <DVDBouncer src={kejri}       alt="Kejri"     />
+      <DVDBouncer src={vedanta}     alt="Vedanta"     />
 
       {/* ── DISCLAIMER MODAL ── */}
       {showDisclaimer && (
@@ -299,7 +311,7 @@ export default function ResultsPage() {
             </Box>
           </Heading>
           <Text color={T.muted} fontSize="sm" mt={3}>
-            Results will be announced soon.
+            Results will be announced soon. You still have time, please make a difference.
           </Text>
         </Box>
       </Box>
@@ -328,10 +340,6 @@ export default function ResultsPage() {
                   width: '90vw',
                   height: 'auto',
                   display: 'block',
-                  border: '8px solid #FFFFFF',
-                  boxShadow: 'inset 0 0 0 4px #E40000, 0 0 40px rgba(255,255,255,0.12)',
-                  borderRadius: '8px',
-                  opacity: 0.9,
                 }}
               />
             </Box>
@@ -358,9 +366,6 @@ export default function ResultsPage() {
                   width: '100%',
                   height: 'auto',
                   display: 'block',
-                  border: '8px solid #FFFFFF',
-                  boxShadow: 'inset 0 0 0 4px #E40000, 0 0 40px rgba(255,255,255,0.12)',
-                  borderRadius: '8px',
                 }}
               />
             )}
